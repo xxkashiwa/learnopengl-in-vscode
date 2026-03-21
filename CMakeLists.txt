@@ -17,6 +17,7 @@ add_subdirectory(glfw-3.4)
 add_executable(learnopengl
     src/main.cpp
     src/glad.c
+    src/shader.cpp
 )
 
 # 头文件搜索路径（glad、GLFW、KHR 等）
