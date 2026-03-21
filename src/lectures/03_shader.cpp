@@ -2,39 +2,15 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <cmath>
-#include "./02_vbo_vao_ebo.cpp"
-int main03()
+#include "window.h"
+#include "mesh.h"
+
+GLuint shaderProgram;
+GLuint vertexShader;
+GLuint fragmentShader;
+void shader_local()
 {
 
-    glfwInit();
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-
-    GLFWwindow *window = glfwCreateWindow(800, 600, "LearnOpenGL", NULL, NULL);
-    if (window == NULL)
-    {
-        std::cout << "Failed to create GLFW window" << std::endl;
-        glfwTerminate();
-        return -1;
-    }
-    glfwMakeContextCurrent(window);
-
-    if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
-    {
-        std::cout << "Failed to initialize GLAD \n";
-        return -1;
-    }
-
-    glViewport(0, 0, 800, 600);
-    glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
-
-    vbo_vao_ebo();
-
-    // start here
-    GLuint shaderProgram;
-    GLuint vertexShader;
-    GLuint fragmentShader;
     shaderProgram = glCreateProgram();
     vertexShader = glCreateShader(GL_VERTEX_SHADER);
     fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
@@ -74,12 +50,20 @@ int main03()
     glAttachShader(shaderProgram, vertexShader);
     glAttachShader(shaderProgram, fragmentShader);
     glLinkProgram(shaderProgram);
+}
 
-    int vertexColorLocation = glGetUniformLocation(shaderProgram, "ourColor");
+int main03()
+{
+    GLFWwindow *window = initWindow(800, 600, "LearnOpenGL");
+    if (!window)
+    {
+        return -1;
+    }
 
+    Mesh quad = createQuadMesh();
+    shader_local();
     while (!glfwWindowShouldClose(window))
     {
-
         processInput(window);
 
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
@@ -88,22 +72,18 @@ int main03()
         glUseProgram(shaderProgram);
         float timeValue = glfwGetTime();
         float greenValue = (sin(timeValue) / 2.0f) + .5f;
-        glUniform4f(vertexColorLocation, 0.0f, greenValue, 0.0f, 1.0f); // 这里更新了uniform，但我们未在shader中使用它，要使用则需要在fragmentShader启用Frag = ourColor
+        int vertexColorLocation = glGetUniformLocation(shaderProgram, "ourColor");
+        glUniform4f(vertexColorLocation, 0.0f, greenValue, 0.0f, 1.0f);
 
-        glBindVertexArray(vao);
-
+        glBindVertexArray(quad.vao);
         // glPolygonMode(GL_FRONT_AND_BACK, GL_LINE); // wireframe mode 线框模式
-        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+        glDrawElements(GL_TRIANGLES, quad.indexCount, GL_UNSIGNED_INT, 0);
 
         glfwPollEvents();
         glfwSwapBuffers(window);
     }
 
-    // --- 释放 OpenGL 资源 ---
-    glDeleteVertexArrays(1, &vao);
-    glDeleteBuffers(1, &vbo);
-    glDeleteBuffers(1, &ebo);
-
+    destroyMesh(quad);
     glfwTerminate();
     return 0;
 }

@@ -13,17 +13,27 @@ endif()
 # 添加 GLFW 源码子目录
 add_subdirectory(glfw-3.4)
 
-# 你的可执行程序
+# 收集核心封装和课程示例源码
+file(GLOB CORE_SOURCES CONFIGURE_DEPENDS
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/core/*.cpp"
+)
+
+file(GLOB LECTURE_SOURCES CONFIGURE_DEPENDS
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/lectures/*.cpp"
+)
+
 add_executable(learnopengl
     src/main.cpp
     src/glad.c
-    src/shader.cpp
+    ${CORE_SOURCES}
+    ${LECTURE_SOURCES}
 )
 
 # 头文件搜索路径（glad、GLFW、KHR 等）
 target_include_directories(learnopengl PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/include
     ${CMAKE_CURRENT_SOURCE_DIR}/glfw-3.4/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/core
 )
 
 # 链接 GLFW
