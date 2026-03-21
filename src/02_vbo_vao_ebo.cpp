@@ -99,7 +99,7 @@ int main02()
 
         glBindVertexArray(vao);
 
-        glPolygonMode(GL_FRONT_AND_BACK, GL_LINE); // wireframe mode 线框模式
+        // glPolygonMode(GL_FRONT_AND_BACK, GL_LINE); // wireframe mode 线框模式
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 
         glfwPollEvents();
