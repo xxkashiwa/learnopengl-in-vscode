@@ -3,6 +3,8 @@
 
 ## learnopengl_proj(MinGW+VSCode)
 
+如果你只想获得vscode环境的从头开始的learnopengl，请从base分支clone项目。
+
 一个基于 [LearnOpenGL](https://learnopengl.com/) 的学习 / 练习工程，使用 CMake 管理构建，依赖 GLFW 和 GLAD。
 
 主要结构：

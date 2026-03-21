@@ -3,6 +3,8 @@
 
 ## learnopengl_proj (MinGW + VS Code)
 
+If you only want to get started with “learnopengl” in the VS Code environment, please clone the project from the “base” branch.
+
 This is a learning / practice project based on [LearnOpenGL](https://learnopengl.com/). It uses CMake for build management and depends on GLFW and GLAD.
 
 ### Project Structure
