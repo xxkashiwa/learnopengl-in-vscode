@@ -5,7 +5,7 @@ int main03();
 int main04();
 int main()
 {
-	unsigned int lectureIndex = 1;
+	unsigned int lectureIndex = 4;
 
 	switch (lectureIndex)
 	{

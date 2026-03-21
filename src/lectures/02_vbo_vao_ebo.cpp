@@ -61,7 +61,7 @@ int main02()
     }
 
     vbo_vao_ebo();
-    Shader shader("shaders/vertex_shader.glsl", "shaders/fragment_shader.glsl");
+    Shader shader("shaders/02_vertex_shader.glsl", "shaders/02_fragment_shader.glsl");
     while (!glfwWindowShouldClose(window))
     {
 
