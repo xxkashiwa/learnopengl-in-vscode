@@ -4,7 +4,8 @@
       "name": "Win32",
       "includePath": [
         "${workspaceFolder}/**",
-        "${workspaceFolder}/include" // 确保这里包含你的 glad 和 glfw 路径
+        "${workspaceFolder}/include", // 确保这里包含你的 glad 和 glfw 路径
+        "${workspaceFolder}/include/imgui"
       ],
       "defines": ["_DEBUG", "UNICODE", "_UNICODE"],
       "windowsSdkVersion": "10.0.19041.0",

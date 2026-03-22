@@ -58,3 +58,5 @@ Thumbs.db
 /glfw-3.4/build-*/
 /glfw-3.4/CMakeFiles/
 /glfw-3.4/CMakeCache.txt
+
+imgui.ini
