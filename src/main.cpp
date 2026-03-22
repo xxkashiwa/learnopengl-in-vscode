@@ -4,9 +4,10 @@ int main02();
 int main03();
 int main04();
 int main05();
+int main06();
 int main()
 {
-	unsigned int lectureIndex = 5;
+	unsigned int lectureIndex = 6;
 
 	switch (lectureIndex)
 	{
@@ -20,6 +21,8 @@ int main()
 		return main04();
 	case 5:
 		return main05();
+	case 6:
+		return main06();
 	default:
 		return 0;
 	}

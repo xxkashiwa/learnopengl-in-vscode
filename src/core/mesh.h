@@ -11,6 +11,12 @@ struct Vertex
     float texCoord[2];
 };
 
+struct SimpleVertex
+{
+    float position[3];
+    float texCoord[2];
+};
+
 // 一个简单的网格封装 VAO/VBO/EBO
 struct Mesh
 {
@@ -22,6 +28,7 @@ struct Mesh
 
 // 创建一个屏幕中心的矩形（两个三角形）
 Mesh createQuadMesh();
+Mesh createSimpleCube();
 
 // 释放 Mesh 对应的 OpenGL 资源
 void destroyMesh(Mesh &mesh);
